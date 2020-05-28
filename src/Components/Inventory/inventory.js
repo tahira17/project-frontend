@@ -2,8 +2,22 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import InventoryItem from "./InventoryItem";
 
+import {connect} from 'react-redux'
+import {getitems} from '../../actions/projectactions'
+
+
 class inventory extends Component {
+
+  componentDidMount(){
+    this.props.getitems()
+  
+    }
+    
   render() {
+
+    const items = this.props.items
+const inventoryComponent = items.map(item => (<InventoryItem key={item.id} item = {item}/>))
+
     return (
     
       <div className="projects">
@@ -19,13 +33,11 @@ class inventory extends Component {
                     Add New Item
                   </Link>
             
-                </div>
-        
-                       
+                </div>     
               <br />
           
               <hr />
-            <InventoryItem/>
+          {inventoryComponent}
 
             </div>
           </div>
@@ -35,4 +47,9 @@ class inventory extends Component {
   }
 }
 
-export default inventory;
+const mapStateToProps = (state) => ({
+
+  items : state.item.items
+  })
+
+export default connect(mapStateToProps,{getitems}) (inventory);

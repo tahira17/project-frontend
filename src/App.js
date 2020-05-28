@@ -5,13 +5,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Welcome from "./Components/Welcome";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import inventory from "./Components/Inventory/inventory";
-import additem from "./Components/Inventory/operations/additem";
+import additem from "./Components/Inventory/operations/AddItem";
 import ErrorPage from "./Components/Shared/ErrorPage";
-
+import { Provider } from 'react-redux';
+import store from './Store';
 
 
 function App() {
   return (
+    <Provider store={store}>
     <BrowserRouter>
       <Route path="/" component={Nav} />
       <Switch>
@@ -22,6 +24,7 @@ function App() {
         <Route path="/" component ={ErrorPage} />
         </Switch>
     </BrowserRouter>
+    </Provider>
   );
 }
 

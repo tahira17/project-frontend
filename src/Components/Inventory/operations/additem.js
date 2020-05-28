@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import classnames from 'classnames'
+import {additem} from '../../../actions/projectactions'
+import {connect} from 'react-redux'
 
- class additem extends Component {
+ class AddItem extends Component {
 
 constructor(props) {
     super(props)
@@ -11,7 +13,16 @@ constructor(props) {
         name: ' ',
         ingredients : ' ',
         price: ' ',
-        size: ' '
+        size: ' ',
+        errors : ' ',
+        data: ' '
+    }
+}
+
+componentWillReceiveProps(nextProps){
+    if(nextProps.errors){
+this.setState({errors : nextProps.errors})
+
     }
 }
 
@@ -30,16 +41,11 @@ submitHandler = (event) => {
         price : this.state.price,
         ingredients : this.state.ingredients,
         size : this.state.size
+
     }
     
-    axios.post('http://localhost:8080/inventory',newitem)
-    .then((res)=>{
-        alert("Success")
-    
-    }).catch((err)=>{
-        alert("Error")
-    })
-    
+    this.props.additem(newitem,this.props.history)
+
     event.preventDefault()
     
     
@@ -56,14 +62,17 @@ submitHandler = (event) => {
                             <hr />
                             <form onSubmit= {(event)=> this.submitHandler(event)} >
                                 <div className="form-group">
-                                    <input type="text" onChange={(event)=> this.changeHandler (event, "name")} className="form-control form-control-lg " placeholder="Drink Name" />
-                                </div>
+                                    <input type="text" onChange={(event)=> this.changeHandler (event, "name")} className={classnames ("form-control form-control-lg",{"is-invalid" :this.state.errors.name })} placeholder="Drink Name" />
+                                    <p className = "text-danger ">{this.state.errors.name} </p>
+                                    </div>
                                 <div className="form-group">
-                                    <input type="text" onChange={(event)=> this.changeHandler (event, "price")} className="form-control form-control-lg" placeholder="Drink  Price" />
-                                </div>
+                                    <input type="text" onChange={(event)=> this.changeHandler (event, "price")} className={classnames ("form-control form-control-lg",{"is-invalid" :this.state.errors.price })} placeholder="Drink  Price" />
+                                    <p className = "text-danger ">{this.state.errors.price} </p>
+                                    </div>
                                 <div className="form-group">
-                                    <textarea onChange={(event)=> this.changeHandler (event, "ingredients")} className="form-control form-control-lg" placeholder="Ingredients"></textarea>
-                                </div>
+                                    <textarea onChange={(event)=> this.changeHandler (event, "ingredients")} className={classnames ("form-control form-control-lg",{"is-invalid" :this.state.errors.ingredients })} placeholder="Ingredients"></textarea>
+                                    <p className = "text-danger ">{this.state.errors.ingredients} </p>
+                                    </div>
 
                                 <div className="form-group">
                                     <select className="form-control form-control-lg" onChange={(event)=> this.changeHandler (event, "size")} >
@@ -83,4 +92,10 @@ submitHandler = (event) => {
     }
 }
 
-export default additem
+const mapStateToProps =(state) => ({
+
+    errors : state.errors
+
+})
+
+export default connect(mapStateToProps,{additem})(AddItem)
