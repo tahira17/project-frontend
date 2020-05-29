@@ -15,7 +15,7 @@ class InventoryItem extends Component {
 
     return (
       
-                <tr scope="row">
+                <tr>
                   <td>{item.name}</td>
                   <td>{item.price}</td>
                   <td>{item.ingredients}</td>
@@ -23,16 +23,18 @@ class InventoryItem extends Component {
                   <td>
                   <Link to="/inventory" onClick={() => this.deleteBtnFunc()}>
                   <li className="btn btn-danger">
-                  <i>Delete Item</i>
+                  <i>Delete </i>
+                </li>
+                
+                </Link>
+                  <Link to={`/updateitem/${item.id}`}>
+                
+                  <li className="btn btn-success" style={{marginLeft : "10px"}}  >
+                  <i>Update</i>
                 </li>
                   </Link>
                   </td>
                </tr>
-          
-        
-
-              
-      
     );
   }
 }

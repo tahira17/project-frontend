@@ -6,6 +6,7 @@ import Welcome from "./Components/Welcome";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import inventory from "./Components/Inventory/inventory";
 import additem from "./Components/Inventory/operations/AddItem";
+import UpdateItem from "./Components/Inventory/operations/UpdateItem";
 import ErrorPage from "./Components/Shared/ErrorPage";
 import { Provider } from 'react-redux';
 import store from './Store';
@@ -21,6 +22,7 @@ function App() {
         <Route path="/inventory" exact component={inventory} /> 
 
         <Route path="/additem" exact component={additem} />   
+        <Route path="/updateitem/:id" exact component={UpdateItem} />   
         <Route path="/" component ={ErrorPage} />
         </Switch>
     </BrowserRouter>
