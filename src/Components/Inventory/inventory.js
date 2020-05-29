@@ -20,29 +20,39 @@ const inventoryComponent = items.map(item => (<InventoryItem key={item.id} item 
 
     return (
     
-      <div className="projects">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
+      <div className= "container" >
+
+            <div className="margins">
+            
               <h1 className="display-4 text-center">Welcome to Inventory</h1>
               <br />
-
-              <div className="btn-group" class="btn btn-light">
                
-                  <Link className="btn-group" to="additem">
+                  <Link className="btn btn-light" to="additem">
                     Add New Item
                   </Link>
-            
-                </div>     
-              <br />
-          
-              <hr />
-          {inventoryComponent}
+                 <br />
 
-            </div>
+                  <div className="col-md-8 m-auto">
+                  <br />
+                  <table class="table table-bordered">
+                  <thead>
+                  <tr>
+                  <th>Drink Name</th>
+                  <th> Price</th>
+                  <th> Ingredients</th>
+                  <th> Size</th>
+                  <th>Action</th>
+                  </tr>
+                  </thead>
+                  {inventoryComponent}
+              
+          </table>
           </div>
-        </div>
-      </div>
+          </div>
+            </div>
+          
+      
+  
     );
   }
 }
