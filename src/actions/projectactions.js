@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {GET_ERRORS, GET_ITEMS,DELETE_ITEMS,GET_ITEM,GET_SALES, UPDATE_SALES,DELETE_SALES} from './types'
+import {GET_ERRORS, GET_ITEMS,DELETE_ITEMS,GET_ITEM,GET_SALES,DELETE_SALES, GET_SALE} from './types'
 
 export const additem = ( newitem, history) => async dispath => {
    await axios.post('http://localhost:8081/item',newitem)
@@ -53,54 +53,56 @@ export const updateitem = (id,updateditem,history) => async dispath => {
 //SALESS
 
 
-export const AddSales = ( newsale, history, itemid) => async dispath => {
-   await axios.post(`http://localhost:8081/item/${itemid}`,newsale)
+export const createsale = ( newsale, history) => async dispath => {
+   alert("1")
+   await axios.post('http://localhost:8081/sales',newsale)
 .then((res)=>{
-    history.push(`/sale/${itemid}`)
+   alert("25467890-xcvgubhijnokpl")
+    history.push('/sale')
 
 }).catch((err)=>{
+   alert("3")
    dispath({type : GET_ERRORS,payload:err.response.data})
 })
 }
 
 
-export const getsales = (itemid) => async dispath => {
-   await axios.get(`http://localhost:8081/item/${itemid}`)
+export const getsales = ( ) => async dispath => {
+  
+   await axios.get('http://localhost:8081/sales')
 .then((res)=>{
-
-  // alert("successs")
+   
    dispath ({type:GET_SALES,payload:res.data})
+   
+})
+}
+
+export const deletesale = (id) => async dispath => {
+  await axios.delete(`http://localhost:8081/sales/${id}` )
+.then((res)=>{
+  
+  dispath ({type:DELETE_SALES,payload:id})
+
+})
+}
+
+export const getsale = (id) => async dispath => {
+  await axios.get('http://localhost:8081/sales/' +id)
+.then((res)=>{
+  
+  dispath ({type:GET_SALE,payload:res.data})
 
 })
 }
 
 
+export const editsale = (id,updatesale,history) => async dispath => {
+  await axios.put('http://localhost:8081/sales/' +id, updatesale)
+.then((res)=>{
+  
+  history.push('/sale')
 
-   export const deletesale = (item_id,id) => async dispath => {
-
-
-      await axios.delete( `/item/${item_id}/${id}`)
-       .then((res) =>{
-    
-   
-          dispath({type:DELETE_SALES,payload:id})
-       });
-
-    }
-   
-   
-    export const updatesale = (id,wallet_id,updatesale , history) => async dispath => {
-   
-      await axios.put(`http://localhost:8081/sale/${item_id}/${id}`, updatesale)
-       .then((res) =>{
-   
-         history.push(`/sale/${item_id}`)
-          
-   
-       }).catch((err) => {
-       
-       dispath({type:GET_ERRORS,payload:err.response.data})
-      
-       });
-   
-      }
+}).catch((err)=>{
+  dispath({type : GET_ERRORS,payload:err.response.data})
+})
+}

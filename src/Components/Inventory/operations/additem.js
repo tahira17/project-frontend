@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import classnames from 'classnames'
 import {additem} from '../../../actions/projectactions'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
  class AddItem extends Component {
 
@@ -15,7 +16,10 @@ constructor(props) {
         price: ' ',
         size: ' ',
         errors : ' ',
-        data: ' '
+        data: ' ',
+        buyername :' ',
+        solditem :' ',
+        amount : ' '
     }
 }
 
@@ -35,7 +39,7 @@ changeHandler = (event,fieldName) =>{
 
 submitHandler = (event) => {
 
-    const newitem={
+    const newitem= {
     
         name: this.state.name,
         price : this.state.price,
@@ -61,6 +65,9 @@ submitHandler = (event) => {
                         <br />
                             <h5 className="display-4 text-center">Add New item</h5>
                             <hr />
+                            <Link to={`/inventory`} className="btn btn-light">
+              Back 
+          </Link>
                             <form onSubmit= {(event)=> this.submitHandler(event)} >
                                 <div className="col-md-8 m-auto">
                                     <input type="text" onChange={(event)=> this.changeHandler (event, "name")} className={classnames ("form-control form-control-lg",{"is-invalid" :this.state.errors.name })} placeholder="Drink Name" />

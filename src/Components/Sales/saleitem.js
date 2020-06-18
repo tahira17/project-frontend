@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import {Link} from 'react-router-dom'
-import { deletesale } from './../../actions/projectActions'
+import { deletesale } from './../../actions/projectactions'
 import {connect} from 'react-redux'
 
  class saleitem extends Component {
@@ -17,13 +17,18 @@ import {connect} from 'react-redux'
     }
 
     render() {
-        let id = this.props.item_id;
+      alert("hyhyhy")
+        let id = this.props.itemid;
         let Sid =this.props.sale.id;
          const sale = this.props.sale
+
+         alert(this.props.sale.buyername)
+
         return (
             <tr>
-                  <td>{sale.soldto}</td>
-                  <td>{sale.itemsold}</td>
+                  <td>{sale.buyername}</td>
+                  <td>{sale.solditems}</td>
+                  <td>{sale.amount}</td>
                   <td>
                   <Link to={`/sale/${id}`} onClick={() => this.deleteBtnFunc()}>
                   <li className="btn btn-danger">
@@ -39,8 +44,8 @@ import {connect} from 'react-redux'
                   </Link>
                   </td>
                </tr>
-        )
+        );
     }
 }
 
-export default saleitem
+export default  connect(null , {deletesale})(saleitem)

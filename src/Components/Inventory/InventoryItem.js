@@ -35,12 +35,6 @@ class InventoryItem extends Component {
                 
                   </Link>
 
-                  <Link to={`/sale/${item.id}`}>
-                  <li className="btn btn-primary" style={{marginLeft : "10px"}}  >
-                  <i>Sales</i>
-                </li>
-                
-                  </Link>
                   </td>
                </tr>
     );

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import InventoryItem from "./InventoryItem";
-
 import {connect} from 'react-redux'
 import {getitems} from '../../actions/projectactions'
 
@@ -29,6 +28,12 @@ const inventoryComponent = items.map(item => (<InventoryItem key={item.id} item 
                
                   <Link className="btn btn-light" to="additem">
                     Add New Item
+                  </Link>
+
+                  <Link to="/sale">
+                  <li className="btn btn-primary" style={{marginLeft : "10px"}}  >
+                  <i>Sales</i>
+                </li>
                   </Link>
                  <br />
 

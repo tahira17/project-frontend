@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import classnames from "classnames";
 import { updateitem, getitem } from "../../../actions/projectactions";
 import { connect } from "react-redux";
+import {Link} from 'react-router-dom'
 
 class UpdateItem extends Component {
   constructor(props) {
@@ -62,9 +63,13 @@ class UpdateItem extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
+           
               <br />
               <h5 className="display-4 text-center">Update this item</h5>
               <hr />
+              <Link to={`/inventory`} className="btn btn-light">
+              Back 
+          </Link>
               <form onSubmit={(event) => this.submitHandler(event)}>
                 <div className="col-md-8 m-auto">
                   <input
@@ -123,8 +128,10 @@ class UpdateItem extends Component {
                     className="btn btn-light btn-block mt-4"
                     value="Update Item"
                   />
+                 
                 </div>
               </form>
+             
             </div>
           </div>
         </div>

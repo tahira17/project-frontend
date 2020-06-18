@@ -13,4 +13,4 @@ export const GET_SALES = 'GET_SALES';
 
 export const DELETE_SALES = 'DELETE_SALES';
 
-export const UPDATE_SALES = 'UPDATE_SALES';
+export const GET_SALE = 'GET_SALE';

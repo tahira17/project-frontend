@@ -1,40 +1,19 @@
 import React, { Component } from 'react'
-
 import { Link } from 'react-router-dom'
-import { getsales, getitem } from './../../actions/projectActions'
+import { getsales} from './../../actions/projectactions'
 import { connect } from 'react-redux'
-import saleitem from './saleitem';
-
+import saleitem from '../../Components/Sales/saleitem'
 
 
  class sale extends Component {
 
-constructor(props) {
-    super(props)
-
-    this.state = {
-         //all the attributes of item and sales = ' '
-    }
-}
-
-
 componentDidMount() {
-    this.props.getsales(this.props.match.params.id);
-    this.props.getitem(this.props.match.params.id)
+    this.props.getsales()
 }
-
-
-
     render() {
 
-
-        let id = this.props.match.params.id;
-
         const sales = this.props.sales
-
-        const SalesComponent = sales.map(sale =>
-            (<saleitem key={sale.id} sale={sale} item_id={id} />))
-       
+      const saleComponent = sales.map(sale => (<saleitem key={sale.id} sale={sale} />))
 
         return (
             <div className= "container" >
@@ -43,9 +22,11 @@ componentDidMount() {
             
               <h1 className="display-4 text-center">Welcome to SALES</h1>
               <br />
-               
-                  <Link className="btn btn-light" to="addsale">
-                    Add New Sale
+              <Link to={`/inventory`} className="btn btn-light" style={{marginRight : "10px"}} >
+              Back 
+          </Link> 
+                  <Link className="btn btn-light" to="/sale/addsale">
+                    Add Sale
                   </Link>
                  <br />
 
@@ -55,13 +36,16 @@ componentDidMount() {
                   <thead>
                   <tr>
                 
-                  <th>Sold to:</th>
-                  <th>Item Sold</th>
-
+                  <th>Buyer name</th>
+                  <th>Number of item Sold</th>
+                  <th>Payment amount</th>
+                  <th>Actions</th>
+               
                   </tr>
                   </thead>
-                  {SalesComponent}
-              
+                
+                      {saleComponent}
+        
           </table>
           </div>
           </div>
@@ -71,4 +55,9 @@ componentDidMount() {
     }
 }
 
-export default sale
+
+const mapStateToProps = (state) => ({
+    sales: state.item.sales
+});
+
+export default connect(mapStateToProps,{getsales})(sale)
