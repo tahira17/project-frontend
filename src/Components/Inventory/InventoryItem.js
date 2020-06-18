@@ -32,6 +32,14 @@ class InventoryItem extends Component {
                   <li className="btn btn-success" style={{marginLeft : "10px"}}  >
                   <i>Update</i>
                 </li>
+                
+                  </Link>
+
+                  <Link to={`/sale/${item.id}`}>
+                  <li className="btn btn-primary" style={{marginLeft : "10px"}}  >
+                  <i>Sales</i>
+                </li>
+                
                   </Link>
                   </td>
                </tr>

@@ -6,3 +6,11 @@ export const DELETE_ITEMS = 'DELETE_ITEMS';
 
 export const GET_ITEM = 'GET_ITEM';
 
+//SALES
+
+
+export const GET_SALES = 'GET_SALES';
+
+export const DELETE_SALES = 'DELETE_SALES';
+
+export const UPDATE_SALES = 'UPDATE_SALES';
