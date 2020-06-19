@@ -6,7 +6,7 @@ const initialState = {
     items : [],
     item : ' ' ,
     sales : [],
-    sale : ' '
+    salee : ' '
 }
 
 export default function(state = initialState , action){
@@ -20,7 +20,7 @@ case DELETE_ITEMS:
         case GET_SALES:
             return { ...state, sales: action.payload };
             case GET_SALE:
-              return{...state, sale: action.payload }
+              return{...state, salee: action.payload }
               case  DELETE_SALES:
                 return { ...state, sales: state.sales.filter(x => x.id !== action.payload) }
            
