@@ -13,7 +13,7 @@ import store from './Store';
 import addsale from "./Components/Sales/salesoperations/addsale";
 import AllSales from "./Components/Sales/AllSales.js";
 import updatesale from './Components/Sales/salesoperations/updatesale'
-
+import "react-app-polyfill/stable"
 
 function App() {
   return (
