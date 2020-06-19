@@ -59,6 +59,7 @@ import {Link} from 'react-router-dom'
                             <Link to={`/sale`} className="btn btn-light">
                             Back 
                         </Link>
+                        
                             <form onSubmit= {(event)=> this.submitHandler(event)} >
                                 <div className="col-md-8 m-auto">
                                     <input type="text" onChange={(event)=> this.changeHandler (event, "buyername")} className="form-control form-control-lg" placeholder="Buyer Name" />

@@ -23,9 +23,7 @@ export const getitems = ( ) => async dispath => {
  export const deleteitems = (id) => async dispath => {
    await axios.delete(`http://localhost:8081/item/${id}` )
 .then((res)=>{
-   
    dispath ({type:DELETE_ITEMS,payload:id})
-
 })
 }
 
@@ -42,7 +40,6 @@ export const getitem = (id) => async dispath => {
 export const updateitem = (id,updateditem,history) => async dispath => {
    await axios.put('http://localhost:8081/item/' +id, updateditem)
 .then((res)=>{
-   
    history.push('/inventory')
 
 }).catch((err)=>{
@@ -54,14 +51,12 @@ export const updateitem = (id,updateditem,history) => async dispath => {
 
 
 export const createsale = ( newsale, history) => async dispath => {
-   alert("1")
+
    await axios.post('http://localhost:8081/sales',newsale)
 .then((res)=>{
-   alert("25467890-xcvgubhijnokpl")
     history.push('/sale')
 
 }).catch((err)=>{
-   alert("3")
    dispath({type : GET_ERRORS,payload:err.response.data})
 })
 }
@@ -71,7 +66,7 @@ export const getsales = ( ) => async dispath => {
   
    await axios.get('http://localhost:8081/sales')
 .then((res)=>{
-   
+
    dispath ({type:GET_SALES,payload:res.data})
    
 })
@@ -96,12 +91,11 @@ export const getsale = (id) => async dispath => {
 }
 
 
-export const editsale = (id,updatesale,history) => async dispath => {
-  await axios.put('http://localhost:8081/sales/' +id, updatesale)
-.then((res)=>{
-  
-  history.push('/sale')
+export const editsale = (id,updatedsale,history) => async dispath => {
+  await axios.put(`http://localhost:8081/sales/${id}`, updatedsale)
 
+.then((res)=>{
+  history.push('/sale')
 }).catch((err)=>{
   dispath({type : GET_ERRORS,payload:err.response.data})
 })

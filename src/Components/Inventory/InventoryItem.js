@@ -4,6 +4,7 @@ import {deleteitems} from "../../actions/projectactions";
 import { connect } from "react-redux";
 
 class InventoryItem extends Component {
+  
   deleteBtnFunc = () => {
     if (window.confirm("ARE YOU SURE ???? ")) {
       this.props.deleteitems(this.props.item.id);

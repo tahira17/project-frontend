@@ -70,6 +70,8 @@ class UpdateItem extends Component {
               <Link to={`/inventory`} className="btn btn-light">
               Back 
           </Link>
+
+          
               <form onSubmit={(event) => this.submitHandler(event)}>
                 <div className="col-md-8 m-auto">
                   <input

@@ -11,7 +11,7 @@ import ErrorPage from "./Components/Shared/ErrorPage";
 import { Provider } from 'react-redux';
 import store from './Store';
 import addsale from "./Components/Sales/salesoperations/addsale";
-import sale from "./Components/Sales/sale";
+import AllSales from "./Components/Sales/AllSales.js";
 import updatesale from './Components/Sales/salesoperations/updatesale'
 
 
@@ -27,7 +27,7 @@ function App() {
         <Route path="/additem" exact component={additem} />   
         <Route path="/updateitem/:id" exact component={UpdateItem} />   
 
-        <Route path="/sale" exact component={sale} />   
+        <Route path="/sale" exact component={AllSales} />   
         <Route path="/sale/addsale" exact component={addsale} />   
         <Route path="/sale/updatesale/:id" exact component={updatesale} />   
         <Route path="/" component ={ErrorPage} />

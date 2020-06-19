@@ -8,9 +8,9 @@ class updatesale extends Component {
     super(props);
 
     this.state = {
-      buyername: " ",
-      solditems: " ",
-      amount: " ",
+      buyername: ' ',
+      solditems: ' ',
+      amount: ' ',
     };
   }
 
@@ -20,9 +20,9 @@ class updatesale extends Component {
     }
     if (nextProps.sale) {
       this.setState({
-        buyername: nextProps.item.buyername,
-        solditems: nextProps.item.solditems,
-        amount: nextProps.item.amount,
+        buyername: nextProps.sale.buyername,
+        solditems: nextProps.sale.solditems,
+        amount: nextProps.sale.amount,
       });
     }
   }
@@ -38,13 +38,15 @@ class updatesale extends Component {
   };
 
   submitHandler = (event) => {
-    const updatesale = {
+  //  alert("in submit handler ")
+    const updatedsale = {
       id: this.state.id,
       buyername: this.state.buyername,
       solditems: this.state.solditems,
+      amount : this.state.amount
     };
 
-    this.props.updatesale(this.state.id, updatesale, this.props.history);
+    this.props.editsale(this.props.match.params.id, updatedsale, this.props.history);
 
     event.preventDefault();
   };
@@ -58,40 +60,31 @@ class updatesale extends Component {
               <br />
               <h5 className="display-4 text-center">Update this Sale</h5>
               <hr />
-              <Link to={`/inventory`} className="btn btn-light">
+              <Link to={`/sale`} className="btn btn-light">
                 Back
               </Link>
-              <form onSubmit={(event) => this.submitHandler(event)}>
-                <div className="col-md-8 m-auto">
-                  <input
-                    type="text"
-                    value={this.state.buyername}
-                    onChange={(event) => this.changeHandler(event, "buyername")}
-                    placeholder="Buyer Name"
-                  />
-                </div>
-                <div className="col-md-8 m-auto">
-                  <input
-                    type="text"
-                    value={this.state.solditems}
-                    onChange={(event) => this.changeHandler(event, "solditems")}
-                    placeholder="Sold Items"
-                  />
-                 
-                </div>
-                <div className="col-md-8 m-auto">
-                  <textarea
-                    value={this.state.amount}
-                    onChange={(event) =>
-                      this.changeHandler(event, "amount")
-                    }
-                   
-                    placeholder="Amount"
-                  ></textarea>
+              <br/>
+          
+              <form onSubmit= {(event)=> this.submitHandler(event)} >
+              <div className="col-md-8 m-auto">
+                  <input type="text" value={this.state.buyername}  onChange={(event)=> this.changeHandler (event, "buyername")} className="form-control form-control-lg" placeholder="Buyer Name" />
                   
-                </div>
-
-              </form>
+                  </div>
+                  <br />
+              <div className="col-md-8 m-auto">
+                  <input type="text" value={this.state.solditems}  onChange={(event)=> this.changeHandler (event, "solditems")} className="form-control form-control-lg" placeholder="Items Sold" />
+                 
+                  </div>
+                  <br />
+                  <div className="col-md-8 m-auto">
+                  <input type="text" value={this.state.amount}   onChange={(event)=> this.changeHandler (event, "amount")} className="form-control form-control-lg" placeholder="amount" />
+             
+                  </div>
+                  <br />
+             <div className="col-md-4 m-auto">
+             <input type="submit" className="btn btn-light btn-block mt-4" value="Update Sale" />
+             </div>
+          </form>
             </div>
           </div>
         </div>
@@ -101,7 +94,7 @@ class updatesale extends Component {
 }
 const mapStateToProps = (state) => ({
   errors: state.errors,
-  sale: state.sale.sale,
+  sale: state.sale.salee,
 });
 
 export default connect(mapStateToProps, { getsale, editsale })(updatesale);
