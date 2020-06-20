@@ -39,7 +39,7 @@ const inventoryComponent = items.map(item => (<InventoryItem key={item.id} item 
 
                   <div className="col-md-8 m-auto">
                   <br />
-                  <table class="table table-bordered">
+                  <table class="table table-bordered" >
                   <thead>
                   <tr>
                   <th>Drink Name</th>
